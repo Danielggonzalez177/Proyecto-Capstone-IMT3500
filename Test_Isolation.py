@@ -71,10 +71,10 @@ def iso_forest2(df, contamination, n_estimators=100, n_components=2):
 
 
 
-def test_isolation(PATH_DICC_TEST,CONTAMINACION,FILENAME,LISTA_COLUMNA):
+def test_isolation(PATH_DICC_TEST,CONTAMINACION,FILENAME,LISTA_COLUMNA,N_ESTIMATORS=100):
     df = pd.read_csv(PATH_DICC_TEST,delimiter=";")
     df = df[LISTA_COLUMNA].dropna()
-    df_scores,df_outliers = iso_forest2(df,CONTAMINACION)
+    df_scores,df_outliers = iso_forest2(df, contamination=CONTAMINACION, n_estimators=N_ESTIMATORS)
     testing = np.linspace(0,1,100)
     result = [0] * 100
     n = len(df_scores)

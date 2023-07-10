@@ -72,8 +72,8 @@ def calcular_tamano_muestra(N, alpha, p, d):
     muestra_tamaño = math.ceil(n)
     return muestra_tamaño
 
-def Test(Variable,lista,valor_maximo,valor_minimo,umbral):
-    lista_rut=RutComunes(lista)
+def Test(Variable,lista,lista_rut,valor_maximo,valor_minimo,umbral):
+    
     dataframelist = []
     dataframelistna = []
     for i in lista:
@@ -101,9 +101,9 @@ def Test(Variable,lista,valor_maximo,valor_minimo,umbral):
     
     dataframeDW = Data(dftemporal)
     Matrix = np.array(dataframeDW)
-    mayores = np.mean(Matrix >= valor_maximo) * 100
-    menores = np.mean(Matrix <= valor_minimo) * 100
-    media = np.mean((Matrix >= valor_minimo) & (Matrix <= valor_maximo)) * 100
+    mayores = np.mean(Matrix >= valor_maximo)
+    menores = np.mean(Matrix <= valor_minimo)
+    media = np.mean((Matrix >= valor_minimo) & (Matrix <= valor_maximo))
 
     #print("Porcentaje de elementos donde no existe evidencia de autocorrelación positiva: ", mayores)
     #print("Porcentaje de elementos donde existe evidencia de autocorrelación positiva: ", menores)
@@ -111,13 +111,13 @@ def Test(Variable,lista,valor_maximo,valor_minimo,umbral):
 
     NewMatrix =  np.abs(Matrix - 4)
 
-    may = np.mean(NewMatrix>= valor_maximo) * 100
-    men = np.mean(NewMatrix <= valor_minimo) * 100
-    med = np.mean((NewMatrix >= valor_minimo) & (NewMatrix <= valor_maximo)) * 100
+    may = np.mean(NewMatrix>= valor_maximo)
+    men = np.mean(NewMatrix <= valor_minimo)
+    med = np.mean((NewMatrix >= valor_minimo) & (NewMatrix <= valor_maximo))
     #print("Porcentaje de elementos donde no existe evidencia de autocorrelación negativa: ", may)
     #print("Porcentaje de elementos donde existe evidencia de autocorrelación negativa: ", men)
     #print("Porcentaje de elementos no concluyentes:", med)
-    if (menores >= umbral or may >= umbral) or (med >= umbral and  media >= umbral):
+    if (menores >= umbral or may>= umbral) or (med >= umbral and  media >= umbral):
         return ["Cumple",mayores,menores,media,may,men,med]
     return ["No cumple",mayores,menores,media,may,men,med]
 
@@ -127,8 +127,10 @@ def test_series(FILENAME_SERIES,PATH_TEST_DICC,PREV_DICCS,CODIGOS_SERIES):
     Lista_Path = PREV_DICCS
     Lista_Path.append(PATH_TEST_DICC)
     tests = pd.DataFrame(columns=['Test', 'Resultado'])
+    
     COLUMNAS_TEST = CODIGOS_SERIES["COLUMNAS_DW"]
+    lista_rut=RutComunes(Lista_Path)
     for i in range(len(COLUMNAS_TEST)):
-        tests.loc[len(tests)] = [f"DW_{COLUMNAS_TEST[i]}",Test(COLUMNAS_TEST[i],Lista_Path,CODIGOS_SERIES["MAX_DW"],CODIGOS_SERIES["MIN_DW"],CODIGOS_SERIES["UMBRAL_DW"])]
+        tests.loc[len(tests)] = [f"DW_{COLUMNAS_TEST[i]}",Test(COLUMNAS_TEST[i],Lista_Path,lista_rut,CODIGOS_SERIES["MAX_DW"],CODIGOS_SERIES["MIN_DW"],CODIGOS_SERIES["UMBRAL_DW"])]
     tests.to_csv(FILENAME_SERIES,index=False)
     return tests

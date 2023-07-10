@@ -6,25 +6,25 @@ from Test_Distribuciones import test_distribuciones
 from Test_Isolation import test_isolation
 from Test_Series import test_series
 from alarma_1 import alarma_1
-
-
+from alarma_2 import alarma_2
+from alarma_3 import alarma_3
 
 
 # Seccion previa a los tests
 
 
-PATH_TEST_DICC = "..\DownloadAll\E01_T_DEU_CONS_2303\E01_T_DEU_CONS_2303.csv"
+PATH_TEST_DICC = "..\E01_T_DEU_CONS_2303_REV.csv"
 
-PATH_2210 = "..\DownloadAll\E01_T_DEU_CONS_2210\E01_T_DEU_CONS_2210.csv"
-PATH_2211 = "..\DownloadAll\E01_T_DEU_CONS_2211\E01_T_DEU_CONS_2211.csv"
-PATH_2212 = "..\DownloadAll\E01_T_DEU_CONS_2212\E01_T_DEU_CONS_2212.csv"
-PATH_2301 = "..\DownloadAll\E01_T_DEU_CONS_2301\E01_T_DEU_CONS_2301.csv"
-PATH_2302 = "..\DownloadAll\E01_T_DEU_CONS_2302\E01_T_DEU_CONS_2302.csv"
-PREV_DICCS = ["..\DownloadAll\E01_T_DEU_CONS_2210\E01_T_DEU_CONS_2210.csv",
-              "..\DownloadAll\E01_T_DEU_CONS_2211\E01_T_DEU_CONS_2211.csv",
-              "..\DownloadAll\E01_T_DEU_CONS_2212\E01_T_DEU_CONS_2212.csv",
-              "..\DownloadAll\E01_T_DEU_CONS_2301\E01_T_DEU_CONS_2301.csv",
-              "..\DownloadAll\E01_T_DEU_CONS_2302\E01_T_DEU_CONS_2302.csv"]
+PATH_2210 = "..\E01_T_DEU_CONS_2210_REV.csv"
+PATH_2211 = "..\E01_T_DEU_CONS_2211_REV.csv"
+PATH_2212 = "..\E01_T_DEU_CONS_2212_REV.csv"
+PATH_2301 = "..\E01_T_DEU_CONS_2301_REV.csv"
+PATH_2302 = "..\E01_T_DEU_CONS_2302_REV.csv"
+PREV_DICCS = ["..\E01_T_DEU_CONS_2210_REV.csv",
+              "..\E01_T_DEU_CONS_2211_REV.csv",
+              "..\E01_T_DEU_CONS_2212_REV.csv",
+              "..\E01_T_DEU_CONS_2301_REV.csv",
+              "..\E01_T_DEU_CONS_2302_REV.csv"]
 
 
 PATH_DICC = "..\DownloadAll\Diccionario T_DEU_CONS.xlsx"
@@ -46,6 +46,7 @@ ESTADO_CODS = [1,2,3,4]
 FILENAME_LOGICOS = "logic_results.csv"
 FILENAME_DIST = "dist_results.csv"
 FILENAME_ISOLATION = "isolation_results.csv"
+FILENAME_SERIES = "series_results.csv"
 CODIGOS = {"BANCO_CODS":BANCO_CODS,
            "MONEDA_CODS":MONEDA_CODS,
            "DICC_CODFAM":DICC_CODFAM,
@@ -54,15 +55,18 @@ CODIGOS = {"BANCO_CODS":BANCO_CODS,
            "ESTADO_CODS":ESTADO_CODS,
            "umbral":umbral}
 COLUMNAS_DIST = ["MTOREV","SALMD","GASTO","ULTXCO","MTOVENC", "TASAINT","SPROM","MTOCAST","CONTINGENTE"]
+COLUMNAS_ISOLATION = ['ESTADO', 'MTOINT', 'MTOORIG', 'MTOORIGP',
+       'MONEDA', 'MTOVENC', 'DCOMO2', 'DCOMO3', 'MTOCAST', 'DIASMORA',
+       'MTOREV',  'TASAINT', 'FECOPE',
+       'FECVEN', 'SALDOPUNTA','MCUOTA', 'SPROM']
 SIGNIFICANCIA = 0.05
 CONTAMINACION = 0.1
-
+UMBRAL_ALARMA_2 = 0.7
+UMBRAL_ALARMA_3 = 0.7
 umbral_DW = 0.95
 CODIGOS_SERIES = {"MIN_DW":1.72789,
               "MAX_DW":1.80942,
-              "COLUMNAS_DW": ["DIASMORA","MTOINT","TASAINT","SPROM",
-                              "CUOTOT","CUOIMP","MCUOTA","IMPFM","SMAX",
-                                "SMIN", "SALMD","CUOPEN","CONTINGENTE"],
+              "COLUMNAS_DW": ["DIASMORA"],
                                 "UMBRAL_DW":umbral_DW}
 
 # Tests logicos 
@@ -85,13 +89,13 @@ while(True):
     resultados_series = test_series(FILENAME_SERIES,PATH_TEST_DICC,PREV_DICCS,CODIGOS_SERIES)
 
 
-    if not alarma_2:
+    if not alarma_2(resultados_distribuciones,resultados_series,UMBRAL_ALARMA_2):
         break
 
 
-    resultados_isolation = test_isolation(PATH_TEST_DICC,CONTAMINACION,FILENAME_ISOLATION)
+    resultados_isolation = test_isolation(PATH_TEST_DICC,CONTAMINACION,FILENAME_ISOLATION,COLUMNAS_ISOLATION)
 
-    if not alarma_3():
+    if not alarma_3(resultados_isolation,UMBRAL_ALARMA_3):
         break
     
 

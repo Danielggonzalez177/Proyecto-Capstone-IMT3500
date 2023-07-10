@@ -1,11 +1,11 @@
 Test,Resultado
-Formato,"['ALERTA (OPENOIBS): (int64, varchar)', 'ALERTA (MTOINT): (object, decimal)', 'ALERTA (MTOORIG): (object, decimal)', 'ALERTA (MTOORIGP): (object, decimal)', 'ALERTA (MONEDA): (float64, char)', 'ALERTA (MTOVENC): (object, decimal)', 'ALERTA (DCOMO2): (object, decimal)', 'ALERTA (DCOMO3): (object, decimal)', 'ALERTA (MTOCAST): (object, decimal)', 'ALERTA (DIASMORA): (float64, smallint)', 'ALERTA (MTOREV): (object, decimal)', 'ALERTA (TIPDEUDA): (float64, smallint)', 'ALERTA (TASAINT): (object, decimal)', 'ALERTA (CUOTOT): (float64, smallint)', 'ALERTA (CUOIMP): (float64, smallint)', 'ALERTA (CUOPEN): (float64, smallint)', 'ALERTA (FECOPE): (float64, int)', 'ALERTA (FECVEN): (float64, int)', 'ALERTA (MARDET): (float64, char)', 'ALERTA (SALDOPUNTA): (int64, float)', 'ALERTA (PERIODICIDAD): (float64, smallint)', 'ALERTA (MCUOTA): (object, float)', 'ALERTA (IMPFM): (object, float)', 'ALERTA (MUTID): (object, float)', 'ALERTA (FECACT): (float64, int)', 'ALERTA (FECBAJ): (float64, int)', 'ALERTA (SPROM): (object, float)', 'ALERTA (SMAX): (object, float)', 'ALERTA (SMIN): (object, float)', 'ALERTA (MARDETF): (float64, smallint)', 'ALERTA (FPVENC): (float64, int)', 'ALERTA (DISPONIBLE): (object, float)', 'ALERTA (CONTINGENTE): (object, float)', 'ALERTA (GASTO): (float64, bigint)']"
+Formato,"['ALERTA (OPENOIBS): (int64, varchar)', 'ALERTA (MONEDA): (float64, char)', 'ALERTA (DIASMORA): (float64, smallint)', 'ALERTA (TIPDEUDA): (float64, smallint)', 'ALERTA (CUOTOT): (float64, smallint)', 'ALERTA (CUOIMP): (float64, smallint)', 'ALERTA (CUOPEN): (float64, smallint)', 'ALERTA (FECOPE): (float64, int)', 'ALERTA (FECVEN): (float64, int)', 'ALERTA (MARDET): (float64, char)', 'ALERTA (PERIODICIDAD): (float64, smallint)', 'ALERTA (FECACT): (float64, int)', 'ALERTA (FECBAJ): (float64, int)', 'ALERTA (MARDETF): (float64, smallint)', 'ALERTA (FPVENC): (float64, int)', 'ALERTA (GASTO): (float64, bigint)']"
 duplicidad_id_mov,"('Cumple', 0.0004193975563801377)"
 duplicidad_num_cuenta,"('No cumple', 0.0004193975563801377)"
 fechas_validas,"('Cumple', 0.0)"
 fec_movimiento,"('No cumple', 5.940381938364636)"
 exactitud_intereses,"('No cumple', 5.940381938364636)"
-test_mtorev,"('No cumple', 87.05571381988342)"
+test_mtorev,"('No cumple', 87.05295278597059)"
 test_estado,"('No Cumple', 28.511554577427255)"
 cod_banco,"('Cumple', 0)"
 cod_divisa,"('No cumple', 94.75312687090629)"

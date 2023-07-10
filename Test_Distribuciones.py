@@ -30,7 +30,6 @@ def df_fillna_dropna_mix(Dataframe,por=0):
 
 def Kolmogorov_condition(threshold,n,m):
     c_t = np.sqrt(-np.log(threshold/2)*0.5)
-    print(c_t * np.sqrt((n+m)/(n*m)))
     return c_t * np.sqrt((n+m)/(n*m))
 
 

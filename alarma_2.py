@@ -3,7 +3,7 @@ import pandas as pd
 
 def alarma_2(resultado_dist,resultado_series,threshold):
     passed = True
-    n = pd.shape(resultado_dist)[0] + pd.shape(resultado_series)[0]
+    n = (resultado_dist).shape[0] + (resultado_series).shape[0]
     n_passed = 0
     for index, test in resultado_dist.iterrows():
         if test["Resultado"][0] == "Cumple":
@@ -17,7 +17,7 @@ def alarma_2(resultado_dist,resultado_series,threshold):
         else:
             failed_test = test["Test"]
             print(f"El test {failed_test} fallo \n")
-    if n_passed < threshold:
+    if n_passed/n < threshold:
         passed = False
     return passed
 

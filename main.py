@@ -41,6 +41,7 @@ umbral = {'R': 5, 'Y': 10}
 
 BANCO_CODS = [39,27]
 MONEDA_CODS = [1,2,3]
+ESTADO_CODS = [1,2,3,4]
 FILENAME_LOGICOS = "logic_results.csv"
 FILENAME_DIST = "logic_results.csv"
 CODIGOS = {"BANCO_CODS":BANCO_CODS,
@@ -48,6 +49,7 @@ CODIGOS = {"BANCO_CODS":BANCO_CODS,
            "DICC_CODFAM":DICC_CODFAM,
            "DICC_CODTLP":DICC_CODTLP,
            "DICC_PROD":DICC_PROD,
+           "ESTADO_CODS":ESTADO_CODS,
            "umbral":umbral}
 COLUMNAS_DIST = ["MTOREV","SALMD","GASTO","ULTXCO","MTOVENC", "TASAINT","SPROM","MTOCAST","CONTINGENTE"]
 SIGNIFICANCIA = 0.05

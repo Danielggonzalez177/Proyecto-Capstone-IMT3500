@@ -107,10 +107,10 @@ def test_mtorev(df,to_float, umbral = 5):
 
 
     # Test de ESTADO 17
-def test_estado(df):
+def test_estado(df,ESTADO_CODS):
     ### PUEDE SER QUE ESTE TEST ESTE MALO? EN NUESTRA BASE DE DATOS HAY MAS VALORES DE ESTADO ###
     '?, y retorna si cumple o no y el porcentaje de error'
-    count = len(df) - len(df[(df["ESTADO"].isin([1,2,3,4]))])
+    count = len(df) - len(df[(df["ESTADO"].isin(ESTADO_CODS))])
     if count > 0:
         return "No Cumple", 100*(count/len(df))
     else:
@@ -236,7 +236,7 @@ def test_results(df,PATH_DICC,CODIGOS):
     tests.loc[len(tests)] = ['fec_movimiento', fec_movimiento(df)]
     tests.loc[len(tests)] = ['exactitud_intereses', exactitud_intereses(df)]
     tests.loc[len(tests)] = ['test_mtorev', test_mtorev(df,to_float)]
-    tests.loc[len(tests)] = ['test_estado', test_estado(df)]
+    tests.loc[len(tests)] = ['test_estado', test_estado(df,CODIGOS["ESTADO_CODS"])]
     tests.loc[len(tests)] = ['cod_banco', cod_banco(df,CODIGOS["BANCO_CODS"])]
     tests.loc[len(tests)] = ['cod_divisa', cod_divisa(df,CODIGOS["MONEDA_CODS"])]
     tests.loc[len(tests)] = ['cod_producto', cod_producto(df,CODIGOS["DICC_PROD"])]

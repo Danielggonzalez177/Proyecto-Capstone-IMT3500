@@ -78,7 +78,7 @@ while(True):
 
     resultados_isolation = test_isolation(PATH_TEST_DICC,CONTAMINACION)
 
-    if not alarma_3:
+    if not alarma_3():
         break
     
 

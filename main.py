@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from Test_Logicos import test_logico
 from Test_Distribuciones import test_distribuciones
 from Test_Isolation import test_isolation
+from Test_Series import test_series
 from alarma_1 import alarma_1
 
 
@@ -55,6 +56,15 @@ CODIGOS = {"BANCO_CODS":BANCO_CODS,
 COLUMNAS_DIST = ["MTOREV","SALMD","GASTO","ULTXCO","MTOVENC", "TASAINT","SPROM","MTOCAST","CONTINGENTE"]
 SIGNIFICANCIA = 0.05
 CONTAMINACION = 0.1
+
+umbral_DW = 0.95
+CODIGOS_SERIES = {"MIN_DW":1.72789,
+              "MAX_DW":1.80942,
+              "COLUMNAS_DW": ["DIASMORA","MTOINT","TASAINT","SPROM",
+                              "CUOTOT","CUOIMP","MCUOTA","IMPFM","SMAX",
+                                "SMIN", "SALMD","CUOPEN","CONTINGENTE"],
+                                "UMBRAL_DW":umbral_DW}
+
 # Tests logicos 
 
 while(True):
@@ -71,6 +81,8 @@ while(True):
 # Tests de distribuciones
 
     resultados_distribuciones = test_distribuciones(FILENAME_DIST,PATH_TEST_DICC,PREV_DICCS[-1],COLUMNAS_DIST,SIGNIFICANCIA)
+
+    resultados_series = test_series(FILENAME_SERIES,PATH_TEST_DICC,PREV_DICCS,CODIGOS_SERIES)
 
 
     if not alarma_2:

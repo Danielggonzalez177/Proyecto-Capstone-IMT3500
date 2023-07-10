@@ -7,8 +7,10 @@ import matplotlib.pyplot as plt
 def to_float(s):
     if type(s) != float:
         s = str(s).split(",")
-        if len(s) == 1:
+        if len(s) == 1 or not s[-1].isdigit():
             return float(f"{int(s[0])}.0")
+        elif not s[0].isdigit() and s[-1].isdigit():
+            return float(f"0.{int(s[-1])}")
         return float(f"{int(s[0])}.{int(s[-1])}")
     return s
 
@@ -46,7 +48,7 @@ def duplicidad_id_mov(df, umbral = 5):
     
     if 100*(num/den) > umbral:
         return "No cumple", 100*(num/den)
-    return "No cumple", 100*(num/den)
+    return "Cumple", 100*(num/den)
 
 
 
@@ -59,7 +61,7 @@ def duplicidad_num_cuenta(df, umbral = 5):
     den = int(df.shape[0])
     if op_duplicadas == 0:
         return "Cumple",0
-    return "No Cumple",100*(op_duplicadas/den)
+    return "No cumple",100*(op_duplicadas/den)
 
 def fechas_validas(df, umbral = 5):
     'Revisa si los dias en FECOPE estan en formato correcto, y retorna si cumple o no y el porcentaje de error'
@@ -99,6 +101,7 @@ def test_mtorev(df,to_float, umbral = 5):
         prc = 100*df[df.MTOREVf == 0].shape[0]/n
     if prc > umbral:
             return ("No cumple", prc)
+    return ("Cumple",prc)
     
 
 
@@ -119,7 +122,7 @@ def cod_banco(df,codigos_banc_val):
     if   df["BANCO"].isin(codigos_banc_val).all():
         return "Cumple",0
     
-    return "No Cumple",100*(len(df["BANCO"].isin(codigos_banc_val))/len(df))
+    return "No cumple",100*(len(df["BANCO"].isin(codigos_banc_val))/len(df))
 
 
 
@@ -130,7 +133,7 @@ def cod_divisa(dataframe,codigos_moneda_val):
     if   dataframe["MONEDA"].isin(codigos_moneda_val).all():
         return "Cumple",0
     
-    return "No Cumple",100*(len(dataframe[(dataframe["MONEDA"].isin(codigos_moneda_val))]))/(len(dataframe))
+    return "No cumple",100*(len(dataframe[(dataframe["MONEDA"].isin(codigos_moneda_val))]))/(len(dataframe))
 
 
 
@@ -139,7 +142,7 @@ def cod_producto(dataframe,DICC_PROD, umbral = 5):
     'Verifica que CODPRO este dentro de los valores definidos'
     count = dataframe[~dataframe.CODPRO.isin(DICC_PROD)].shape[0]
     if count/dataframe.shape[0] > umbral:
-        return "No Cumple", 100*count/dataframe.shape[0]
+        return "No cumple", 100*count/dataframe.shape[0]
     return "Cumple", 0
 
 
@@ -148,7 +151,7 @@ def cod_tlp(dataframe,DICC_CODTLP, umbral = 5):
     'Verificar que CODTLP este dentro de los valores especificados'
     count = dataframe[~dataframe.CODPRO.isin(DICC_CODTLP)].shape[0]
     if count/dataframe.shape[0] > umbral:
-        return "No Cumple", 100*count/dataframe.shape[0]
+        return "No cumple", 100*count/dataframe.shape[0]
     return "Cumple", 0
 
 
@@ -232,7 +235,7 @@ def test_results(df,PATH_DICC,CODIGOS):
     tests.loc[len(tests)] = ['fechas_validas', fechas_validas(df)]
     tests.loc[len(tests)] = ['fec_movimiento', fec_movimiento(df)]
     tests.loc[len(tests)] = ['exactitud_intereses', exactitud_intereses(df)]
-    tests.loc[len(tests)] = ['test_mtorev', test_mtorev(df)]
+    tests.loc[len(tests)] = ['test_mtorev', test_mtorev(df,to_float)]
     tests.loc[len(tests)] = ['test_estado', test_estado(df)]
     tests.loc[len(tests)] = ['cod_banco', cod_banco(df,CODIGOS["BANCO_CODS"])]
     tests.loc[len(tests)] = ['cod_divisa', cod_divisa(df,CODIGOS["MONEDA_CODS"])]
@@ -246,10 +249,10 @@ def test_results(df,PATH_DICC,CODIGOS):
     return tests
 
 
-def test_logico(FILENAME,PATH_DICC,CODIGOS):
+def test_logico(FILENAME,PATH_DICC_TEST,PATH_DICC,CODIGOS):
     "Escribe los resultados en FILENAME.csv"
-    df = pd.read_csv(PATH_DICC,delimiter=";")
-    tests = test_results(df,CODIGOS)
+    df = pd.read_csv(PATH_DICC_TEST,delimiter=";")
+    tests = test_results(df,PATH_DICC,CODIGOS)
 
     tests.to_csv(FILENAME, index=False)
 

@@ -11,21 +11,21 @@ from alarma_1 import alarma_1
 # Seccion previa a los tests
 
 
-PATH_TEST_DICC = "Datos\E01_T_DEU_CONS_2303.csv"
+PATH_TEST_DICC = "..\DownloadAll\E01_T_DEU_CONS_2303\E01_T_DEU_CONS_2303.csv"
 
-PATH_2210 = "Datos\E01_T_DEU_CONS_2210.csv"
-PATH_2211 = "Datos\E01_T_DEU_CONS_2211.csv"
-PATH_2212 = "Datos\E01_T_DEU_CONS_2212.csv"
-PATH_2301 = "Datos\E01_T_DEU_CONS_2301.csv"
-PATH_2302 = "Datos\E01_T_DEU_CONS_2302.csv"
-PREV_DICCS = ["Datos\E01_T_DEU_CONS_2210.csv",
-              "Datos\E01_T_DEU_CONS_2211.csv",
-              "Datos\E01_T_DEU_CONS_2212.csv",
-              "Datos\E01_T_DEU_CONS_2301.csv",
-              "Datos\E01_T_DEU_CONS_2302.csv"]
+PATH_2210 = "..\DownloadAll\E01_T_DEU_CONS_2210\E01_T_DEU_CONS_2210.csv"
+PATH_2211 = "..\DownloadAll\E01_T_DEU_CONS_2211\E01_T_DEU_CONS_2211.csv"
+PATH_2212 = "..\DownloadAll\E01_T_DEU_CONS_2212\E01_T_DEU_CONS_2212.csv"
+PATH_2301 = "..\DownloadAll\E01_T_DEU_CONS_2301\E01_T_DEU_CONS_2301.csv"
+PATH_2302 = "..\DownloadAll\E01_T_DEU_CONS_2302\E01_T_DEU_CONS_2302.csv"
+PREV_DICCS = ["...\E01_T_DEU_CONS_2210.csv",
+              "...\E01_T_DEU_CONS_2211.csv",
+              "...\E01_T_DEU_CONS_2212.csv",
+              "...\E01_T_DEU_CONS_2301.csv",
+              "...\E01_T_DEU_CONS_2302.csv"]
 
 
-PATH_DICC = "Datos\Diccionario T_DEU_CONS.xlsx"
+PATH_DICC = "..\DownloadAll\Diccionario T_DEU_CONS.xlsx"
 
 
 
@@ -55,7 +55,7 @@ SIGNIFICANCIA = 0.05
 while(True):
 
 
-    resultados_logicos = test_logico(FILENAME_LOGICOS,PATH_TEST_DICC,CODIGOS)
+    resultados_logicos = test_logico(FILENAME_LOGICOS,PATH_TEST_DICC,PATH_DICC,CODIGOS)
 
 
 # Levantamos la alarma 

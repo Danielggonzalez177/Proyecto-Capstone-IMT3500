@@ -1,7 +1,10 @@
 # README de Kolmogorov y Mann-Whitney
 
 ## Requerimientos 
-    - Scipy
+    -   Scipy
+    -   Pandas
+    -   Numpy
+    -   Matplotlib
 
 ## Kolmogorov
 

@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from Test_Logicos import test_logico
 from Test_Distribuciones import test_distribuciones
+from Test_Isolation import test_isolation
 from alarma_1 import alarma_1
 
 
@@ -18,11 +19,11 @@ PATH_2211 = "..\DownloadAll\E01_T_DEU_CONS_2211\E01_T_DEU_CONS_2211.csv"
 PATH_2212 = "..\DownloadAll\E01_T_DEU_CONS_2212\E01_T_DEU_CONS_2212.csv"
 PATH_2301 = "..\DownloadAll\E01_T_DEU_CONS_2301\E01_T_DEU_CONS_2301.csv"
 PATH_2302 = "..\DownloadAll\E01_T_DEU_CONS_2302\E01_T_DEU_CONS_2302.csv"
-PREV_DICCS = ["...\E01_T_DEU_CONS_2210.csv",
-              "...\E01_T_DEU_CONS_2211.csv",
-              "...\E01_T_DEU_CONS_2212.csv",
-              "...\E01_T_DEU_CONS_2301.csv",
-              "...\E01_T_DEU_CONS_2302.csv"]
+PREV_DICCS = ["..\DownloadAll\E01_T_DEU_CONS_2210\E01_T_DEU_CONS_2210.csv",
+              "..\DownloadAll\E01_T_DEU_CONS_2211\E01_T_DEU_CONS_2211.csv",
+              "..\DownloadAll\E01_T_DEU_CONS_2212\E01_T_DEU_CONS_2212.csv",
+              "..\DownloadAll\E01_T_DEU_CONS_2301\E01_T_DEU_CONS_2301.csv",
+              "..\DownloadAll\E01_T_DEU_CONS_2302\E01_T_DEU_CONS_2302.csv"]
 
 
 PATH_DICC = "..\DownloadAll\Diccionario T_DEU_CONS.xlsx"
@@ -50,6 +51,7 @@ CODIGOS = {"BANCO_CODS":BANCO_CODS,
            "umbral":umbral}
 COLUMNAS_DIST = ["MTOREV","SALMD","GASTO","ULTXCO","MTOVENC", "TASAINT","SPROM","MTOCAST","CONTINGENTE"]
 SIGNIFICANCIA = 0.05
+CONTAMINACION = 0.1
 # Tests logicos 
 
 while(True):
@@ -66,6 +68,16 @@ while(True):
 # Tests de distribuciones
 
     resultados_distribuciones = test_distribuciones(FILENAME_DIST,PATH_TEST_DICC,PREV_DICCS[-1],COLUMNAS_DIST,SIGNIFICANCIA)
+
+
+    if not alarma_2:
+        break
+
+
+    resultados_isolation = test_isolation(PATH_TEST_DICC,CONTAMINACION)
+
+    if not alarma_3:
+        break
     
 
 

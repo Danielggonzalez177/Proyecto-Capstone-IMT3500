@@ -71,7 +71,7 @@ def iso_forest2(df, contamination, n_estimators=100, n_components=2):
 
 
 
-def test_isolation(PATH_DICC_TEST,CONTAMINACION):
+def test_isolation(PATH_DICC_TEST,CONTAMINACION,FILENAME):
     df = pd.read_csv(PATH_DICC_TEST,delimiter=";")
     df_scores,df_outliers = iso_forest2(df,CONTAMINACION)
     testing = np.linspace(0,1,100)
@@ -82,5 +82,10 @@ def test_isolation(PATH_DICC_TEST,CONTAMINACION):
         result[i] = df_scores[df_scores >= testing[i]].count()/n
     result.append(test_comparison)
     result.append(1/100)
+    tests = pd.DataFrame(columns=['Test', 'Resultado'])
+    tests.loc[len(tests)] = ["Outliers segun Isolation",test_comparison]
+    for i in range(len(testing)):
+        tests.loc[len(tests)] = [f"Outliers con probabilidad de {testing[i]}",result[i]]
+    tests.to_csv(FILENAME, index=False)
     return result
     

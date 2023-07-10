@@ -43,7 +43,8 @@ BANCO_CODS = [39,27]
 MONEDA_CODS = [1,2,3]
 ESTADO_CODS = [1,2,3,4]
 FILENAME_LOGICOS = "logic_results.csv"
-FILENAME_DIST = "logic_results.csv"
+FILENAME_DIST = "dist_results.csv"
+FILENAME_ISOLATION = "isolation_results.csv"
 CODIGOS = {"BANCO_CODS":BANCO_CODS,
            "MONEDA_CODS":MONEDA_CODS,
            "DICC_CODFAM":DICC_CODFAM,
@@ -76,7 +77,7 @@ while(True):
         break
 
 
-    resultados_isolation = test_isolation(PATH_TEST_DICC,CONTAMINACION)
+    resultados_isolation = test_isolation(PATH_TEST_DICC,CONTAMINACION,FILENAME_ISOLATION)
 
     if not alarma_3():
         break

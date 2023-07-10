@@ -4,7 +4,7 @@
     -   Scipy
     -   Pandas
     -   Numpy
-    -   Matplotlib
+    
 
 ## Kolmogorov
 

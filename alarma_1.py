@@ -1,4 +1,3 @@
-from ast import literal_eval
 import re
 
 def alarma_1(resultados_logicos):

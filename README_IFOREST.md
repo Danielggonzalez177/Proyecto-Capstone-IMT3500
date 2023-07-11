@@ -13,7 +13,7 @@ Este archivo contiene información sobre las funciones implementadas para la par
 - Shap ([Instalación](https://shap.readthedocs.io/en/latest/index.html)) (opcional para visualizacion)
 
 ## Lectura y parámetros
-Las bases de datos deben estar guardadas en una carpeta ```Datos```. Hay algunos parámetros usados para el correcto funcionamiento de los tests. En cuanto a los parámetros:
+Hay algunos parámetros usados para el correcto funcionamiento de los tests. En cuanto a los parámetros:
 - `PATH_XXYY`: Objeto tipo `str` que contiene la ruta a la base de datos que contiene la fecha `XXYY`.
 - `MONEDA_CODS`: Objeto tipo `list` que contiene los tipos de moneda válidos, en base al diccionario de datos entregado. 
 - `BANCO_CODS`: Objeto tipo `list` que contiene los bancos válidos, en base al diccionario de datos entregado. 

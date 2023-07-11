@@ -1,6 +1,6 @@
 # Capstone - Validación de Datos ITAU
 ## Tests Series
-#Se encuentra en el archivo Tests_Series.py
+### Se encuentra en el archivo Tests_Series.py
 Este archivo contiene información sobre las funciones implementadas para la parte de series de tiempo para 
 determinar la presencia de autocorrelación tanto positiva como negativa o inconcluso del proyecto Capstone - Validación de Datos ITAU. 
 El objetivo de esta parte del proyecto es revisar, si los datos entre tiempo presentan autocorrelación tanto como positiva, negativa o no se pueden obtener conclusiones Python 3.8+.
@@ -31,29 +31,24 @@ A continuación se muestran las funciones para implementar los tests. Aquí `df`
 
 - `TestSeriesDW (df,fecha_1,fecha_2)`:  Fórmula que calcula el estadístico de Durbin-Watson para un dataframe df entre las fechas fecha 1,fecha 2.
 
-- `Test(Variable,lista,valor_maximo,valor_minimo,umbral)`: Test que dado una Variable en el diccionario de variables,la lista de PATHS,y los valores máximos y mínimos del estadístico de Durbin-Watson
-											retorna el resultado de cumplimiento en porcentaje del test de Durbin-Watson, en conjunto con los porcentajes. Para ello primero filtra los Ruts con la función
-											RutComunes, luego genera un dataframe donde se encuentran todos los valores de la variable en todos
-											los tiempos de la lista de los PATHS, a este dataframe lo llama dftemporal. En consecuencia ocupa la función Data aplicada a dftemporal que a su vez usa calcu-
-											lar_tamano_muestra para obtener la lista de listas. Finalmente calcula el porcentaje de estadísticos de
-											Durbin-Watson que estan dentro de cierto rango de umbrales utilizando el siguiente algoritmo:
-											if (menores >= umbral or may >= umbral) or (med >= umbral and  media >= umbral):
-        											return ["Cumple",mayores,menores,media,may,men,med]
-    											return ["No cumple",mayores,menores,media,may,men,med]
-    											
-    											En donde:
-    											menores:Corresponde a la proporción de valores que son menores o iguales a valor_minimo
-    											mayores:Corresponde a la proporción de valores que son mayores o iguales a valor_maximo
-    											medias:Corresponde a la proporción de valores que estan entre valor minimo y valor_maximo
-    											Es decir los valores menores,mayores,medias corresponden a la proporcion en el Test de Durbin-Watson de
-    											que existe evidencia para autocorrelación positiva, no existe evidencia de autocorrelación positiva o el test es inconcluso.
-    											Poor otra parte tenemos:
-    											may:Corresponde a la proporción de valores que son mayores o iguales a valor_maximo
-    											mens:Corresponde a la proporción de valores que son menores o iguales a valor_minimo
-    											med:Corresponde a la proporción de valores que son menores o iguales a valor minimo
-    											Es decir los valores men,may,med corresponden a la proporcion en el Test de Durbin-Watson de
-    											que existe evidencia para autocorrelación negativa, no existe evidencia de autocorrelación negativa o el test es inconcluso.
-    											*Notar que may,men,med son calculados con respecto a la formula de Durbin-Watson para la autocorrelación negativa, es decir 4-DW.
+- `Test(Variable,lista,valor_maximo,valor_minimo,umbral)`: Test que dado una Variable en el diccionario de variables,la lista de PATHS,y los valores máximos y mínimos del estadístico de Durbin-Watson retorna el resultado de cumplimiento en porcentaje del test de Durbin-Watson, en conjunto con los porcentajes. Para ello primero filtra los Ruts con la función RutComunes, luego genera un dataframe donde se encuentran todos los valores de la variable en todos los tiempos de la lista de los PATHS, a este dataframe lo llama dftemporal. En consecuencia ocupa la función Data aplicada a dftemporal que a su vez usa calcular_tamano_muestra para obtener la lista de listas. Finalmente calcula el porcentaje de estadísticos de Durbin-Watson que estan dentro de cierto rango de umbrales utilizando el siguiente algoritmo:
+```
+if (menores >= umbral or may >= umbral) or (med >= umbral and  media >= umbral):
+return ["Cumple",mayores,menores,media,may,men,med]
+return ["No cumple",mayores,menores,media,may,men,med]
+```
+
+En donde:
+- menores:Corresponde a la proporción de valores que son menores o iguales a valor_minimo
+- mayores:Corresponde a la proporción de valores que son mayores o iguales a valor_maximo
+- medias:Corresponde a la proporción de valores que estan entre valor minimo y valor_maximo
+
+Es decir los valores menores,mayores,medias corresponden a la proporcion en el Test de Durbin-Watson de que existe evidencia para autocorrelación positiva, no existe evidencia de autocorrelación positiva o el test es inconcluso. Por otra parte tenemos:
+
+- may:Corresponde a la proporción de valores que son mayores o iguales a valor_maximo
+- mens:Corresponde a la proporción de valores que son menores o iguales a valor_minimo
+- med:Corresponde a la proporción de valores que son menores o iguales a valor minimo
+Es decir los valores men,may,med corresponden a la proporcion en el Test de Durbin-Watson de que existe evidencia para autocorrelación negativa, no existe evidencia de autocorrelación negativa o el test es inconcluso. *Notar que may,men,med son calculados con respecto a la formula de Durbin-Watson para la autocorrelación negativa, es decir 4-DW.
     											
     											
     											

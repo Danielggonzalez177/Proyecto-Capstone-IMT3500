@@ -11,12 +11,12 @@ Este archivo contiene información sobre las funciones implementadas para la par
 - IPython ([Instalación](https://ipython.org/install.html))
 
 ## Lectura y parámetros
-Las bases de datos deben estar guardadas en una carpeta ```Datos```. Hay algunos parámetros usados para el correcto funcionamiento de los tests. En cuanto a los parámetros:
+Hay algunos parámetros usados para el correcto funcionamiento de los tests. En cuanto a los parámetros:
 - `PATH_XXYY`: Objeto tipo `str` que contiene la ruta a la base de datos que contiene la fecha `XXYY`.
 - `MONEDA_CODS`: Objeto tipo `list` que contiene los tipos de moneda válidos, en base al diccionario de datos entregado. 
 - `BANCO_CODS`: Objeto tipo `list` que contiene los bancos válidos, en base al diccionario de datos entregado. 
 - `DICC_X`: Objeto auxiliar tipo `list` que contiene los campos válidos para la variable `X`, en base al diccionario de datos entregado. 
-- `UMBRAL`: #Por implementar#, `dict` que contiene los umbrales a usar por columna.
+- `UMBRAL`: Objeto `dict` que contiene los umbrales a usar.
 
 ## Funciones
 
@@ -29,7 +29,7 @@ A continuación se muestran las funciones para implementar los tests. Aquí `df`
 - `fec_movimiento(df)`: Revisa los `NaN` en las fechas, y retorna tupla `(cumplimiento, % error)`.
 - `exactitud_intereses(df)`: Revisa la proporcion de `NaN` en `TASAINT`, y retorna tupla `(cumplimiento, % error)`.
 - `test_mtorev(df)`: Revisa si `MTOREV` toma valores `0`, y retorna tupla `(cumplimiento, % error)`
-- `test_estado(df)`: ########### REVISAR ESTE #############
+- `test_estado(df)`:  Revisa que el estado este entre los valores definidos, y retorna tupla `(cumplimiento, % error)`. Depende de `ESTADO_CODS`.
 - `cod_banco(df)`: Revisa que el codigo de banco este entre los valores definidos, y retorna tupla `(cumplimiento, % error)`. Depende de `BANCO_CODS`.
 - `cod_divisa(df)`: Verificar que las monedas esten dentro de las definidas, y retorna tupla `(cumplimiento, % error)`. Depende de `MONEDA_CODS`.
 - `cod_producto(df)`: Verifica que `CODPRO` este dentro de los valores definidos.

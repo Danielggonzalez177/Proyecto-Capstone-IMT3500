@@ -15,17 +15,17 @@ from alarma_3 import alarma_3
 ################
 
 # Parametros de lectura de Datos
-PATH_TEST_DICC = "..\E01_T_DEU_CONS_2303_REV.csv"
-PATH_2210 = "..\E01_T_DEU_CONS_2210_REV.csv"
-PATH_2211 = "..\E01_T_DEU_CONS_2211_REV.csv"
-PATH_2212 = "..\E01_T_DEU_CONS_2212_REV.csv"
-PATH_2301 = "..\E01_T_DEU_CONS_2301_REV.csv"
-PATH_2302 = "..\E01_T_DEU_CONS_2302_REV.csv"
-PREV_DICCS = ["..\E01_T_DEU_CONS_2210_REV.csv",
-              "..\E01_T_DEU_CONS_2211_REV.csv",
-              "..\E01_T_DEU_CONS_2212_REV.csv",
-              "..\E01_T_DEU_CONS_2301_REV.csv",
-              "..\E01_T_DEU_CONS_2302_REV.csv"]
+PATH_TEST_DICC = "..\Datos\E01_T_DEU_CONS_2303.csv"
+PATH_2210 = "..\Datos\E01_T_DEU_CONS_2210.csv"
+PATH_2211 = "..\Datos\E01_T_DEU_CONS_2211.csv"
+PATH_2212 = "..\Datos\E01_T_DEU_CONS_2212.csv"
+PATH_2301 = "..\Datos\E01_T_DEU_CONS_2301.csv"
+PATH_2302 = "..\Datos\E01_T_DEU_CONS_2302.csv"
+PREV_DICCS = ["..\Datos\E01_T_DEU_CONS_2210.csv",
+              "..\Datos\E01_T_DEU_CONS_2211.csv",
+              "..\Datos\E01_T_DEU_CONS_2212.csv",
+              "..\Datos\E01_T_DEU_CONS_2301.csv",
+              "..\Datos\E01_T_DEU_CONS_2302.csv"]
 
 PATH_DICC = "..\DownloadAll\Diccionario T_DEU_CONS.xlsx"
 
@@ -67,7 +67,11 @@ umbral_DW = 0.95
 CODIGOS_SERIES = {
     "MIN_DW": 1.72789, # Basado en tablas DW
     "MAX_DW": 1.80942, # Basado en tablas DW
-    "COLUMNAS_DW": ["DIASMORA"],
+    "COLUMNAS_DW": ["DIASMORA","MTOINT","TASAINT","SPROM",
+                    "CUOTOT","CUOIMP","MCUOTA","IMPFM","SMAX",
+                    "SMIN", "SALMD","CONTINGENTE","ESTADO","MTOORIG",
+                    "MTOORIGP","DCOMO2","DCOMO3","CUOPEN","FECOPE","FECVEN",
+                    "MUTID","SALDOPUNTA","CUPOD","DISPONIBLE","GASTO"],
     "UMBRAL_DW": umbral_DW}
 
 # Columnas a usar para tests de Isolation Forest

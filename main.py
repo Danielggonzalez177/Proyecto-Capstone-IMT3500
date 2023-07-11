@@ -78,6 +78,7 @@ COLUMNAS_ISOLATION = ['ESTADO', 'MTOINT', 'MTOORIG', 'MTOORIGP',
 # Parametros extra de iForest
 CONTAMINACION = 0.1
 N_ESTIMATORS = 100
+SHOW_PCA = False # True si se quiere visualizar resultados iForest con reduc. dim.
 
 # Umbrales para etapas estadisticas yiForest, respectivamente
 UMBRAL_ALARMA_2 = 0.7
@@ -105,7 +106,7 @@ while(True):
         break
     
     # Tests de iForest
-    resultados_isolation = test_isolation(PATH_TEST_DICC,CONTAMINACION,FILENAME_ISOLATION,COLUMNAS_ISOLATION,N_ESTIMATORS)
+    resultados_isolation = test_isolation(PATH_TEST_DICC,CONTAMINACION,FILENAME_ISOLATION,COLUMNAS_ISOLATION,N_ESTIMATORS,SHOW_PCA)
 
     # Alarma iForest
     if not alarma_3(resultados_isolation,UMBRAL_ALARMA_3):

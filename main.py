@@ -98,6 +98,7 @@ while(True):
 
     # Alarma Logicos
     if not alarma_1(resultados_logicos):
+        print("Se levanta la alarma 1. No se pasaron los tests logicos")
         break
 
     # Tests de distribuciones
@@ -107,6 +108,7 @@ while(True):
 
     # Alarma Estadisticos
     if not alarma_2(resultados_distribuciones,resultados_series,UMBRAL_ALARMA_2):
+        print("Se levanta la alarma 2. No se pasaron los tests estadisticos")
         break
     
     # Tests de iForest
@@ -114,6 +116,7 @@ while(True):
 
     # Alarma iForest
     if not alarma_3(resultados_isolation,UMBRAL_ALARMA_3):
+        print("Se levanta la alarma 2. No se pasaron los tests de ML")
         break
 
     print(f'Todos los tests pasados! Base de datos {PATH_TEST_DICC} correcta.')

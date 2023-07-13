@@ -8,6 +8,7 @@ from Test_Series import test_series
 from alarma_1 import alarma_1
 from alarma_2 import alarma_2
 from alarma_3 import alarma_3
+from time import time
 
 
 ################
@@ -88,29 +89,52 @@ UMBRAL_ALARMA_3 = 0.7
 ## INICIO DE TESTS ##
 #####################
 
+print("INICIO TESTEO")
 while(True):
     # Tests logicos 
+    print('Iniciando Tests Logicos')
+    t1 = time()
     resultados_logicos = test_logico(FILENAME_LOGICOS,PATH_TEST_DICC,PATH_DICC,CODIGOS)
+    t2 = time()
+    print(f'Tests Logicos finalizados\nTiempo: {t2-t1:.2f} s')
 
     # Alarma Logicos
     if not alarma_1(resultados_logicos):
-        pass
+        print("Se levanta la alarma 1. No se pasaron los tests logicos")
+        #break
 
     # Tests de distribuciones
+    print('Iniciando Tests Distribuciones')
+    t3 = time()
     resultados_distribuciones = test_distribuciones(FILENAME_DIST,PATH_TEST_DICC,PREV_DICCS[-1],COLUMNAS_DIST,SIGNIFICANCIA)
+    t4 = time()
+    print(f'Tests Distribuciones finalizados\nTiempo: {t4-t3:.2f} s')
+    
     # Tests de Series
+    print('Iniciando Tests Series')
+    t5 = time()
     resultados_series = test_series(FILENAME_SERIES,PATH_TEST_DICC,PREV_DICCS,CODIGOS_SERIES)
+    t6 = time()
+    print(f'Tests Series finalizados\nTiempo: {t6-t5:.2f} s')
 
     # Alarma Estadisticos
     if not alarma_2(resultados_distribuciones,resultados_series,UMBRAL_ALARMA_2):
+        print("Se levanta la alarma 2. No se pasaron los tests estadisticos")
         break
     
     # Tests de iForest
+    print('Iniciando Tests IForest')
+    t7 = time()
     resultados_isolation = test_isolation(PATH_TEST_DICC,CONTAMINACION,FILENAME_ISOLATION,COLUMNAS_ISOLATION,N_ESTIMATORS,SHOW_PCA)
+    t8 = time()
+    print(f'Tests IForest finalizados\nTiempo: {t8-t7:.2f} s')
 
     # Alarma iForest
     if not alarma_3(resultados_isolation,UMBRAL_ALARMA_3):
+        print("Se levanta la alarma 2. No se pasaron los tests de ML")
         break
 
     print(f'Todos los tests pasados! Base de datos {PATH_TEST_DICC} correcta.')
     break
+
+print("FIN TESTEO")

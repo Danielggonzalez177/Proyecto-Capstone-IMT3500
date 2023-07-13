@@ -13,7 +13,7 @@ def alarma_1(resultados_logicos):
                 passed = False
 
         else:
-            aux = test["Test"]
-            print(f"El test de {aux} no paso\n")
-            passed = False
+            if test["Resultado"][0] == 'No cumple':
+                print(f"El test de {test['Test']} no cumple\n")
+                passed = False
     return passed

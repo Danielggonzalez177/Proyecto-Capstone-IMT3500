@@ -8,6 +8,7 @@ from Test_Series import test_series
 from alarma_1 import alarma_1
 from alarma_2 import alarma_2
 from alarma_3 import alarma_3
+from time import time
 
 
 ################
@@ -15,17 +16,17 @@ from alarma_3 import alarma_3
 ################
 
 # Parametros de lectura de Datos
-PATH_TEST_DICC = "..\Datos\E01_T_DEU_CONS_2303.csv"
-PATH_2210 = "..\Datos\E01_T_DEU_CONS_2210.csv"
-PATH_2211 = "..\Datos\E01_T_DEU_CONS_2211.csv"
-PATH_2212 = "..\Datos\E01_T_DEU_CONS_2212.csv"
-PATH_2301 = "..\Datos\E01_T_DEU_CONS_2301.csv"
-PATH_2302 = "..\Datos\E01_T_DEU_CONS_2302.csv"
-PREV_DICCS = ["..\Datos\E01_T_DEU_CONS_2210.csv",
-              "..\Datos\E01_T_DEU_CONS_2211.csv",
-              "..\Datos\E01_T_DEU_CONS_2212.csv",
-              "..\Datos\E01_T_DEU_CONS_2301.csv",
-              "..\Datos\E01_T_DEU_CONS_2302.csv"]
+PATH_TEST_DICC = "..\E01_T_DEU_CONS_2303_REV.csv"
+PATH_2210 = "..\E01_T_DEU_CONS_2210_REV.csv"
+PATH_2211 = "..\E01_T_DEU_CONS_2211_REV.csv"
+PATH_2212 = "..\E01_T_DEU_CONS_2212_REV.csv"
+PATH_2301 = "..\E01_T_DEU_CONS_2301_REV.csv"
+PATH_2302 = "..\E01_T_DEU_CONS_2302_REV.csv"
+PREV_DICCS = ["..\E01_T_DEU_CONS_2210_REV.csv",
+              "..\E01_T_DEU_CONS_2211_REV.csv",
+              "..\E01_T_DEU_CONS_2212_REV.csv",
+              "..\E01_T_DEU_CONS_2301_REV.csv",
+              "..\E01_T_DEU_CONS_2302_REV.csv"]
 
 PATH_DICC = "..\DownloadAll\Diccionario T_DEU_CONS.xlsx"
 
@@ -92,32 +93,54 @@ UMBRAL_ALARMA_3 = 0.7
 ## INICIO DE TESTS ##
 #####################
 
+print("INICIO TESTEO")
+t0 = time()
 while(True):
     # Tests logicos 
+    print('Iniciando Tests Logicos')
+    t1 = time()
     resultados_logicos = test_logico(FILENAME_LOGICOS,PATH_TEST_DICC,PATH_DICC,CODIGOS)
+    t2 = time()
+    print(f'Tests Logicos finalizados\nTiempo: {t2-t1:.2f} s\n')
 
     # Alarma Logicos
     if not alarma_1(resultados_logicos):
-        print("Se levanta la alarma 1. No se pasaron los tests logicos")
+        print("Se levanta la alarma 1. No se pasaron los tests logicos\n")
         break
 
     # Tests de distribuciones
+    print('Iniciando Tests Distribuciones')
+    t3 = time()
     resultados_distribuciones = test_distribuciones(FILENAME_DIST,PATH_TEST_DICC,PREV_DICCS[-1],COLUMNAS_DIST,SIGNIFICANCIA)
+    t4 = time()
+    print(f'Tests Distribuciones finalizados\nTiempo: {t4-t3:.2f} s\n')
+    
     # Tests de Series
+    print('Iniciando Tests Series')
+    t5 = time()
     resultados_series = test_series(FILENAME_SERIES,PATH_TEST_DICC,PREV_DICCS,CODIGOS_SERIES)
+    t6 = time()
+    print(f'Tests Series finalizados\nTiempo: {t6-t5:.2f} s')
 
     # Alarma Estadisticos
     if not alarma_2(resultados_distribuciones,resultados_series,UMBRAL_ALARMA_2):
-        print("Se levanta la alarma 2. No se pasaron los tests estadisticos")
+        print("Se levanta la alarma 2. No se pasaron los tests estadisticos\n")
         break
     
     # Tests de iForest
+    print('Iniciando Tests IForest')
+    t7 = time()
     resultados_isolation = test_isolation(PATH_TEST_DICC,CONTAMINACION,FILENAME_ISOLATION,COLUMNAS_ISOLATION,N_ESTIMATORS,SHOW_PCA)
+    t8 = time()
+    print(f'Tests IForest finalizados\nTiempo: {t8-t7:.2f} s\n')
 
     # Alarma iForest
     if not alarma_3(resultados_isolation,UMBRAL_ALARMA_3):
-        print("Se levanta la alarma 2. No se pasaron los tests de ML")
+        print("Se levanta la alarma 2. No se pasaron los tests de IForest\n")
         break
 
-    print(f'Todos los tests pasados! Base de datos {PATH_TEST_DICC} correcta.')
+    print(f'Todos los tests pasados! Base de datos {PATH_TEST_DICC} correcta\n')
     break
+
+tf = time()
+print(f"FIN TESTEO\nTiempo: Tiempo: {tf-t0:.2f} s")

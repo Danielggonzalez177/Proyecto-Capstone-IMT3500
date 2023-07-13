@@ -87,9 +87,6 @@ def exactitud_intereses(df, umbral = 5):
     return "Cumple", 100*(den/num)
 
 
-
-
-
 # Test de MTOREV 15/16
 def test_mtorev(df,to_float, umbral = 5):
     'Revisa si MTOREV toma valores 0, y retorna si cumple o no y el porcentaje de error'
@@ -104,12 +101,8 @@ def test_mtorev(df,to_float, umbral = 5):
     return ("Cumple",prc)
     
 
-
-
-    # Test de ESTADO 17
 def test_estado(df,ESTADO_CODS):
-    ### PUEDE SER QUE ESTE TEST ESTE MALO? EN NUESTRA BASE DE DATOS HAY MAS VALORES DE ESTADO ###
-    '?, y retorna si cumple o no y el porcentaje de error'
+    'Revisa si estado esta dentro de los valores definidos, y retorna si cumple o no y el porcentaje de error'
     count = len(df) - len(df[(df["ESTADO"].isin(ESTADO_CODS))])
     if count > 0:
         return "No Cumple", 100*(count/len(df))
@@ -190,9 +183,6 @@ def DIASMORA30_ESTADO2(df, umbral = 5):
     return ('Cumple', round(prc,2))
 
 
-
-
-# No tiene sentido que aparezcan con estado 1 ni 2 ya que los DIASMORA son mayores a 30
 def DIASMORA89_ESTADO5(df, umbral = 5):
     '''Test (DIASMORA89_ESTADO5):  
     Si los dias de mora son <= 89 y >= 30, entonces solo debemos obtener estado: 5'''

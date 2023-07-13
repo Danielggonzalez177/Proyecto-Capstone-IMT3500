@@ -37,5 +37,5 @@ A continuación se muestran las funciones para implementar los tests. Aquí `df`
 - `DIASMORA0_ESTADO1(df)`: Revisa que si `DIASMORA = 0`, entonces `ESTADO = 1`, de acuerdo con el diccionario de datos
 - `DIASMORA30_ESTADO2(df)`: Revisa que si `0 < DIASMORA < 30`, entonces `ESTADO = 2`, de acuerdo con el diccionario de datos.
 - `DIASMORA89_ESTADO5(df)`: Revisa que si `30 <= DIASMORA <= 89`, entonces `ESTADO = 5`, de acuerdo con el diccionario de datos.
-- `test_and_write(df, FILENAME)`: Ejecuta todos los tests anteriores para `df` y crea `FILENAME.csv` que contiene los resultados obtenidos.
+- `test_results(df, FILENAME,CODIGOS)`: Ejecuta todos los tests anteriores para `df` y crea `FILENAME.csv` que contiene los resultados obtenidos. 
 
